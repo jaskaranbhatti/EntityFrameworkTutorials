@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbTestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_Pragim_Entity_Department">
+    <Key>
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="DeptID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeptName" Type="nvarchar" MaxLength="20" />
+    <Property Name="Location" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="tbl_Pragim_Entity_Employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="20" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="20" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+    <Property Name="Salary" Type="int" />
+    <Property Name="DeptID" Type="int" />
+  </EntityType>
+  <Association Name="FK__tbl_Pragi__DeptI__1ED998B2">
+    <End Role="tbl_Pragim_Entity_Department" Type="Self.tbl_Pragim_Entity_Department" Multiplicity="0..1" />
+    <End Role="tbl_Pragim_Entity_Employee" Type="Self.tbl_Pragim_Entity_Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Pragim_Entity_Department">
+        <PropertyRef Name="DeptID" />
+      </Principal>
+      <Dependent Role="tbl_Pragim_Entity_Employee">
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbTestModelStoreContainer">
+    <EntitySet Name="tbl_Pragim_Entity_Department" EntityType="Self.tbl_Pragim_Entity_Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Pragim_Entity_Employee" EntityType="Self.tbl_Pragim_Entity_Employee" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tbl_Pragi__DeptI__1ED998B2" Association="Self.FK__tbl_Pragi__DeptI__1ED998B2">
+      <End Role="tbl_Pragim_Entity_Department" EntitySet="tbl_Pragim_Entity_Department" />
+      <End Role="tbl_Pragim_Entity_Employee" EntitySet="tbl_Pragim_Entity_Employee" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

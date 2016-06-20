@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="668d257979854ec5aea983df9469ba85" Name="Diagram1">
+        <EntityTypeShape EntityType="dbTestModel.tbl_Pragim_Entity_Department" Width="3.125" PointX="0.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbTestModel.tbl_Pragim_Entity_Employee" Width="1.5" PointX="5.875" PointY="0.625" IsExpanded="true" />
+        <AssociationConnector Association="dbTestModel.FK__tbl_Pragi__DeptI__1ED998B2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

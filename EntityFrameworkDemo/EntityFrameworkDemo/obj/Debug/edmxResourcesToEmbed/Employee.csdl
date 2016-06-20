@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbTestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbl_Pragim_Entity_Department">
+    <Key>
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="DeptID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeptName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_Pragim_Entity_Employee" Relationship="Self.FK__tbl_Pragi__DeptI__1ED998B2" FromRole="tbl_Pragim_Entity_Department" ToRole="tbl_Pragim_Entity_Employee" />
+  </EntityType>
+  <EntityType Name="tbl_Pragim_Entity_Employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Salary" Type="Int32" />
+    <Property Name="DeptID" Type="Int32" />
+    <NavigationProperty Name="tbl_Pragim_Entity_Department" Relationship="Self.FK__tbl_Pragi__DeptI__1ED998B2" FromRole="tbl_Pragim_Entity_Employee" ToRole="tbl_Pragim_Entity_Department" />
+  </EntityType>
+  <Association Name="FK__tbl_Pragi__DeptI__1ED998B2">
+    <End Role="tbl_Pragim_Entity_Department" Type="Self.tbl_Pragim_Entity_Department" Multiplicity="0..1" />
+    <End Role="tbl_Pragim_Entity_Employee" Type="Self.tbl_Pragim_Entity_Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Pragim_Entity_Department">
+        <PropertyRef Name="DeptID" />
+      </Principal>
+      <Dependent Role="tbl_Pragim_Entity_Employee">
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbTestEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_Pragim_Entity_Department" EntityType="Self.tbl_Pragim_Entity_Department" />
+    <EntitySet Name="tbl_Pragim_Entity_Employee" EntityType="Self.tbl_Pragim_Entity_Employee" />
+    <AssociationSet Name="FK__tbl_Pragi__DeptI__1ED998B2" Association="Self.FK__tbl_Pragi__DeptI__1ED998B2">
+      <End Role="tbl_Pragim_Entity_Department" EntitySet="tbl_Pragim_Entity_Department" />
+      <End Role="tbl_Pragim_Entity_Employee" EntitySet="tbl_Pragim_Entity_Employee" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

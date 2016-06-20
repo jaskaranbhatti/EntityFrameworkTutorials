@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Pragim_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_Pragim_Department1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Location" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_Pragim_Employee_1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" />
+    <Property Name="LastName" Type="nvarchar(max)" />
+    <Property Name="Gender" Type="nvarchar(max)" />
+    <Property Name="Salary" Type="int" Nullable="false" />
+    <Property Name="DeptID" Type="int" Nullable="false" />
+    <Property Name="JobTitle" Type="nvarchar(max)" />
+    <Property Name="CodeFirst_Department_Id" Type="int" />
+  </EntityType>
+  <Association Name="FK_dbo_tbl_Pragim_Employee_1_dbo_tbl_Pragim_Department1_CodeFirst_Department_Id">
+    <End Role="tbl_Pragim_Department1" Type="Self.tbl_Pragim_Department1" Multiplicity="0..1" />
+    <End Role="tbl_Pragim_Employee_1" Type="Self.tbl_Pragim_Employee_1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Pragim_Department1">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_Pragim_Employee_1">
+        <PropertyRef Name="CodeFirst_Department_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="usp_Pragim_CreateEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+    <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Gender" Type="nvarchar" Mode="In" />
+    <Parameter Name="Salary" Type="int" Mode="In" />
+    <Parameter Name="JobTitle" Type="nvarchar" Mode="In" />
+    <Parameter Name="DeptID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_Pragim_DeleteEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmployeeID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_Pragim_UpdateEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmployeeID" Type="int" Mode="In" />
+    <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+    <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Gender" Type="nvarchar" Mode="In" />
+    <Parameter Name="Salary" Type="int" Mode="In" />
+    <Parameter Name="JobTitle" Type="nvarchar" Mode="In" />
+    <Parameter Name="DeptID" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="Pragim_DBModelStoreContainer">
+    <EntitySet Name="tbl_Pragim_Department1" EntityType="Self.tbl_Pragim_Department1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Pragim_Employee_1" EntityType="Self.tbl_Pragim_Employee_1" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_tbl_Pragim_Employee_1_dbo_tbl_Pragim_Department1_CodeFirst_Department_Id" Association="Self.FK_dbo_tbl_Pragim_Employee_1_dbo_tbl_Pragim_Department1_CodeFirst_Department_Id">
+      <End Role="tbl_Pragim_Department1" EntitySet="tbl_Pragim_Department1" />
+      <End Role="tbl_Pragim_Employee_1" EntitySet="tbl_Pragim_Employee_1" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

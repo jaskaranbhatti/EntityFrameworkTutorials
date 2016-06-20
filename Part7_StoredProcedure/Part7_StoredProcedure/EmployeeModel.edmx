@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Pragim_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_Pragim_Department1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Location" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_Pragim_Employee_1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="Gender" Type="nvarchar(max)" />
+          <Property Name="Salary" Type="int" Nullable="false" />
+          <Property Name="DeptID" Type="int" Nullable="false" />
+          <Property Name="JobTitle" Type="nvarchar(max)" />
+          <Property Name="CodeFirst_Department_Id" Type="int" />
+        </EntityType>
+        <Association Name="FK_dbo_tbl_Pragim_Employee_1_dbo_tbl_Pragim_Department1_CodeFirst_Department_Id">
+          <End Role="tbl_Pragim_Department1" Type="Self.tbl_Pragim_Department1" Multiplicity="0..1" />
+          <End Role="tbl_Pragim_Employee_1" Type="Self.tbl_Pragim_Employee_1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Pragim_Department1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_Pragim_Employee_1">
+              <PropertyRef Name="CodeFirst_Department_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="usp_Pragim_CreateEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Gender" Type="nvarchar" Mode="In" />
+          <Parameter Name="Salary" Type="int" Mode="In" />
+          <Parameter Name="JobTitle" Type="nvarchar" Mode="In" />
+          <Parameter Name="DeptID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Pragim_DeleteEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmployeeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Pragim_UpdateEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmployeeID" Type="int" Mode="In" />
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Gender" Type="nvarchar" Mode="In" />
+          <Parameter Name="Salary" Type="int" Mode="In" />
+          <Parameter Name="JobTitle" Type="nvarchar" Mode="In" />
+          <Parameter Name="DeptID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="Pragim_DBModelStoreContainer">
+          <EntitySet Name="tbl_Pragim_Department1" EntityType="Self.tbl_Pragim_Department1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Pragim_Employee_1" EntityType="Self.tbl_Pragim_Employee_1" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_tbl_Pragim_Employee_1_dbo_tbl_Pragim_Department1_CodeFirst_Department_Id" Association="Self.FK_dbo_tbl_Pragim_Employee_1_dbo_tbl_Pragim_Department1_CodeFirst_Department_Id">
+            <End Role="tbl_Pragim_Department1" EntitySet="tbl_Pragim_Department1" />
+            <End Role="tbl_Pragim_Employee_1" EntitySet="tbl_Pragim_Employee_1" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Pragim_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_Pragim_Department1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Pragim_Employee_1" Relationship="Self.FK_dbo_tbl_Pragim_Employee_1_dbo_tbl_Pragim_Department1_CodeFirst_Department_Id" FromRole="tbl_Pragim_Department1" ToRole="tbl_Pragim_Employee_1" />
+        </EntityType>
+        <EntityType Name="tbl_Pragim_Employee_1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="Int32" Nullable="false" />
+          <Property Name="DeptID" Type="Int32" Nullable="false" />
+          <Property Name="JobTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CodeFirst_Department_Id" Type="Int32" />
+          <NavigationProperty Name="tbl_Pragim_Department1" Relationship="Self.FK_dbo_tbl_Pragim_Employee_1_dbo_tbl_Pragim_Department1_CodeFirst_Department_Id" FromRole="tbl_Pragim_Employee_1" ToRole="tbl_Pragim_Department1" />
+        </EntityType>
+        <Association Name="FK_dbo_tbl_Pragim_Employee_1_dbo_tbl_Pragim_Department1_CodeFirst_Department_Id">
+          <End Role="tbl_Pragim_Department1" Type="Self.tbl_Pragim_Department1" Multiplicity="0..1" />
+          <End Role="tbl_Pragim_Employee_1" Type="Self.tbl_Pragim_Employee_1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Pragim_Department1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_Pragim_Employee_1">
+              <PropertyRef Name="CodeFirst_Department_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Pragim_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_Pragim_Department1" EntityType="Self.tbl_Pragim_Department1" />
+          <EntitySet Name="tbl_Pragim_Employee_1" EntityType="Self.tbl_Pragim_Employee_1" />
+          <AssociationSet Name="FK_dbo_tbl_Pragim_Employee_1_dbo_tbl_Pragim_Department1_CodeFirst_Department_Id" Association="Self.FK_dbo_tbl_Pragim_Employee_1_dbo_tbl_Pragim_Department1_CodeFirst_Department_Id">
+            <End Role="tbl_Pragim_Department1" EntitySet="tbl_Pragim_Department1" />
+            <End Role="tbl_Pragim_Employee_1" EntitySet="tbl_Pragim_Employee_1" />
+          </AssociationSet>
+          <FunctionImport Name="usp_Pragim_CreateEmployee">
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="Gender" Mode="In" Type="String" />
+            <Parameter Name="Salary" Mode="In" Type="Int32" />
+            <Parameter Name="JobTitle" Mode="In" Type="String" />
+            <Parameter Name="DeptID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Pragim_DeleteEmployee">
+            <Parameter Name="EmployeeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Pragim_UpdateEmployee">
+            <Parameter Name="EmployeeID" Mode="In" Type="Int32" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="Gender" Mode="In" Type="String" />
+            <Parameter Name="Salary" Mode="In" Type="Int32" />
+            <Parameter Name="JobTitle" Mode="In" Type="String" />
+            <Parameter Name="DeptID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Pragim_DBModelStoreContainer" CdmEntityContainer="Pragim_DBEntities">
+          <EntitySetMapping Name="tbl_Pragim_Department1">
+            <EntityTypeMapping TypeName="Pragim_DBModel.tbl_Pragim_Department1">
+              <MappingFragment StoreEntitySet="tbl_Pragim_Department1">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Pragim_Employee_1">
+            <EntityTypeMapping TypeName="Pragim_DBModel.tbl_Pragim_Employee_1">
+              <MappingFragment StoreEntitySet="tbl_Pragim_Employee_1">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="CodeFirst_Department_Id" ColumnName="CodeFirst_Department_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_Pragim_CreateEmployee" FunctionName="Pragim_DBModel.Store.usp_Pragim_CreateEmployee" />
+          <FunctionImportMapping FunctionImportName="usp_Pragim_DeleteEmployee" FunctionName="Pragim_DBModel.Store.usp_Pragim_DeleteEmployee" />
+          <FunctionImportMapping FunctionImportName="usp_Pragim_UpdateEmployee" FunctionName="Pragim_DBModel.Store.usp_Pragim_UpdateEmployee" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
